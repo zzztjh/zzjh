@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function XiaoNa() {
+        //封装小娜的询问
+        this.ask = function () {
+            var msg = prompt('欢迎使用小娜！！！\n输入q退出小娜\n输入1进入计算总和功能\n输入2查询当前时间\n输入3让小娜给你讲个笑话');
+            return msg;
+        }
+        //计算总和
+        this.calculate = function () {
+            var sums = prompt('输入你要求和数值，以逗号隔开');
+            //分割用户输入的
+            var arr = sums.split(',');
+            var sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                sum += parseFloat(arr[i]);
+            }
+            alert('你的结果算出来了是：' + sum)
+        }
+        //获取日期     
+
+        this.getTime = function () {    
+            var time = new Date();
+            var y = time.getFullYear();
+            var M = time.getMonth();
+            var d = time.getDate();
+            var h = time.getHours();
+            var m = time.getMinutes();
+            var s = time.getSeconds();
+            y < 10 ? y = '0' + y : y;
+            M < 10 ? M = '0' + M : M;
+            d < 10 ? d = '0' + d : d;
+            h < 10 ? h = '0' + h : h;
+            m < 10 ? m = '0' + m : m;
+            s < 10 ? s = '0' + s : s;
+            var day = "现在是北京时间： " + y + "-" + M + "-" + d + " " + h + ":" + m + ":" + s;
+            alert(day);
+        }
+        //讲笑话
+        this.telljoke = function () {
+            var joke = ['笑话1', '笑话2', '笑话3', '笑话4', '笑话5', ];
+            var n = Math.floor(Math.random() * joke.length);
+            alert(joke[n]);
+        }
+        this.unkonw = function () {
+            alert('小娜不明白你在说什么');
+        }
+    }
+    //创建一个小娜对象
+    var xiaona = new XiaoNa;
+    while (true) {
+        var msg = xiaona.ask();
+        if (msg === 'q') {
+            break;
+        }
+        switch (msg) {
+            //小娜的求和功能
+            case '1':
+            case '求和':
+                xiaona.calculate();
+                break;
+                //显示时间
+            case '2':
+            case '时间':
+                xiaona.getTime();
+                break;
+                //讲笑话
+            case '3':
+            case '笑话':
+                xiaona.telljoke();
+                break;
+            default:
+                xiaona.unkonw();
+                break;
+        }
+    }
+</script>
+
+</html>
